@@ -134,7 +134,7 @@ projects.forEach((p, i) => {
       <div class="browser-bar">
         <div class="browser-url">${p.screen.replace(/^https?:\/\//, "")}</div>
       </div>
-      <iframe src="${p.screen}" loading="lazy" referrerpolicy="no-referrer" title="${p.name} preview"></iframe>
+      <iframe src="${p.screen}" loading="lazy" referrerpolicy="no-referrer" title="${p.name} preview" scrolling="no"></iframe>
     </a>`
     : "";
   card.innerHTML = `
