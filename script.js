@@ -4,10 +4,12 @@ const skills = {
     { label: "C++", color: "#00599C" },
     { label: "Python", color: "#3776AB" },
     { label: "JavaScript", color: "#F7DF1E" },
-    { label: "Java", color: "#ED8B00" },
+    { label: "TypeScript", color: "#3178C6" },
     { label: "HTML", color: "#E34F26" },
     { label: "CSS", color: "#1572B6" },
     { label: "SQL", color: "#336791" },
+    { label: "PostgreSQL", color: "#336791" },
+    { label: "REST API", color: "#336791" },
     { label: "C", color: "#A8B9CC" },
   ],
   row2: [
@@ -28,6 +30,7 @@ const skills = {
     { label: "LightGBM", color: "#6BC46D" },
     { label: "Jupyter", color: "#F37626" },
     { label: "VS Code", color: "#007ACC" },
+    { label: "Figma", color: "#F24E1E" },
     { label: "Conda", color: "#44A833" },
   ],
 };
@@ -47,6 +50,18 @@ buildMarquee("row3", skills.row3);
 
 /* ── Projects ── */
 const projects = [
+  {
+    name: "SRAHUB",
+    desc: "A deployed fullstack web platform built with Next.js and TypeScript — a live, production-ready site for community resource sharing. End-to-end: frontend, API, and deployment on Cloudflare Workers.",
+    tags: ["Next.js", "TypeScript", "Fullstack", "Deployed"],
+    github: "https://github.com/toedue/srahub",
+    demo: "https://srahub-web.srahub.workers.dev/",
+    codeIcon: "github",
+    codeText: "Code",
+    demoIcon: "external",
+    demoText: "Live",
+    screen: "https://srahub-web.srahub.workers.dev/",
+  },
   {
     name: "SMART CAMPUS",
     desc: "An advanced AI study assistant designed to streamline student life through intelligent chat, document analysis, and academic organization. Features a specialized multi-model parallel generation engine for the highest quality responses.",
@@ -96,6 +111,8 @@ const projects = [
 ];
 
 const icons = {
+  external:
+    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h-2v14h14v-2H9.4l6.3-6.3-1.4-1.4L8 16.6V7zm11.6.6L15 5.4l2.6-2.6c.4-.4 1-.4 1.4 0l2.6 2.6c.4.4.4 1 0 1.4L16.6 11l-1.4-1.4z"/></svg>',
   github:
     '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>',
   codeforces:
@@ -112,10 +129,19 @@ projects.forEach((p, i) => {
   const demoBtn = p.demo
     ? `<a href="${p.demo}" target="_blank" rel="noopener" class="proj-btn proj-demo">${icons[p.demoIcon]}${p.demoText}</a>`
     : "";
+  const screen = p.screen
+    ? `<a href="${p.screen}" target="_blank" rel="noopener" class="proj-screen">
+      <div class="browser-bar">
+        <div class="browser-url">${p.screen.replace(/^https?:\/\//, "")}</div>
+      </div>
+      <iframe src="${p.screen}" loading="lazy" referrerpolicy="no-referrer" title="${p.name} preview"></iframe>
+    </a>`
+    : "";
   card.innerHTML = `
     <h3 class="project-name">${p.name}</h3>
     <p class="project-desc">${p.desc}</p>
     <div class="project-tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+    ${screen}
     <div class="project-links">
       <a href="${p.github}" target="_blank" rel="noopener" class="proj-btn proj-code">${icons[p.codeIcon]}${p.codeText}</a>
       ${demoBtn}
